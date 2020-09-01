@@ -233,6 +233,14 @@
                               <td><input type="text" id="returnUrl" name="returnUrl" value="http://localhost:7070/view/AuthResult.jsp" size="50px"></td>
 
                        </tr>
+                       
+                         <tr>
+
+                              <td colspan="3">returnUrl</td>
+
+                              <td><input type="text" id="returnUrl" name="returnUrl" value="http://localhost:7070/view/AuthResult.jsp" size="50px"></td>
+
+                       </tr>
 
                        <tr>
 

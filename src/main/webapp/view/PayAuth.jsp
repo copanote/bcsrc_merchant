@@ -217,6 +217,7 @@
         <input type="hidden" name="paymentBrandName" id="paymentBrandName" value="<%=paymentBrandName%>"/>
 
         <input type="hidden" name="returnUrl" id="returnUrl" value="<%=returnUrl%>"/>
+        <input type="hidden" name="productName" id="productName" value="FIFA"/>
 
         <input type="hidden" name="json" id="json" value="<%=json%>"/>   
 
