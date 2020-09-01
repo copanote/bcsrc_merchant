@@ -55,33 +55,22 @@
                <tbody>
 
                        <tr>
-
                               <td>AuthResult(Close Popup And Payment Checkout Process !!!)</td>
-
                        </tr>
-
                        <tr>
-
                               <td></td>
-
                        </tr>
-
                        <tr>
-
                               <td>resultCode : <%= request.getParameter("resultCode") %></td>
-
                        </tr>
-
                        <tr>
-
                               <td>resultMessage : <%= request.getParameter("resultMessage") %></td>
-
                        </tr>
-
                        <tr>
-
                               <td>srcCorrelationId : <%= request.getParameter("srcCorrelationId") %></td>
-
+                       </tr>
+                       <tr>
+                              <td>srciTransactionId : <%= request.getParameter("srciTransactionId") %></td>
                        </tr>
 
                </tbody>
