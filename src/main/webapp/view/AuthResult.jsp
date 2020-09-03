@@ -11,49 +11,30 @@
 <style type="text/css">
 
         body {
-
                white-space:pre;
-
         }
 
         table, td {
-
                border:1px solid;
-
         }
 
         table {
-
                margin:auto;
-
                width:85%;
-
                table-layout:fixed;
-
                word-break:break-all;
-
         }
 
 </style>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <script>
-
 </script>
-
 <title>AuthResult</title>
-
 </head>
-
 <body>
-
 <form>
-
         <table>
-
                <tbody>
-
                        <tr>
                               <td>AuthResult(Close Popup And Payment Checkout Process !!!)</td>
                        </tr>

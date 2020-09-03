@@ -29,34 +29,28 @@
 <script>
 
         $(document).ready(function() {
-
                $("#srcPayment").bind("click", function() {
-
                        var _width = "1000";
-
                        var _height = "1000";
-
                        var _left = Math.ceil((window.screen.width - _width)/2);
-
                        var _top = Math.ceil((window.screen.height - _height)/2);
-
                        window.open("", "dpaForm", "width=" + _width + ",height=" + _height + ",left=" + _left + ",top=" + _top);
-
- 
-
                        var form = $("#dpaForm");
-
                        form.attr("action", "PayAuth.jsp");
-
                        form.attr("method", "post");
-
                        form.attr("target", "dpaForm");
-
                        form.submit();
-
                })
-
         });
+        
+        $(document).ready(function() {
+            $("#test").bind("click", function() {
+                var form = $("#dpaForm");
+                    form.attr("action", "https://isrnd.bccard.com:56443/src/payments/init/");
+                    form.attr("method", "post");
+                    form.submit();
+            })
+     });
 
 </script>
 
@@ -149,9 +143,7 @@
                               <td rowspan="2">구매자 식별 정보</td>
 
                               <td>식별값 타입</td>
-
                               <td><input type="text" id="identityType" name="identityType" value="ID" size="40px"></td>
-
                        </tr>
 
                        <tr>
@@ -213,33 +205,23 @@
                        <tr>
 
                               <td colspan="2">고객 전체 성명</td>
-
                               <td><input type="text" id="fullName" name="fullName" value="ziwag dsjing" size="40px"></td>
-
                        </tr>
-
                        <tr>
-
                               <td colspan="3">paymentBrandName</td>
-
                               <td><input type="text" id="paymentBrandName" name="paymentBrandName" value="sacombank" size="50px"></td>
-
                        </tr>
-
                        <tr>
-
                               <td colspan="3">returnUrl</td>
-
                               <td><input type="text" id="returnUrl" name="returnUrl" value="http://localhost:7070/view/AuthResult.jsp" size="50px"></td>
-
                        </tr>
-                       
-                       
 
                        <tr>
-
                               <td colspan="4" align="center"><button type="button" id="srcPayment">BCSRC 결제</button></td>
-
+                       </tr>
+                       
+                        <tr>
+                              <td colspan="4" align="center"><button type="button" id="test">TestBCSRC 결제</button></td>
                        </tr>
 
                </tbody>
