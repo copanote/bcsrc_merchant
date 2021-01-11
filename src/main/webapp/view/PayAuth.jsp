@@ -135,7 +135,7 @@
                        var json = JSON.stringify(obj);
                        var form = $("#dpaForm");
                        //개발에서 테스트
-                       form.attr("action", "https://isrnd.bccard.com:56443/src/payments/init/");
+                       form.attr("action", "https://isrnd.bccard.com:56443/src/payments/init2/");
                        //로컬에서 테스트
                        //form.attr("action", "http://localhost:8080/src/payments/init");
                        form.attr("method", "post");
@@ -152,7 +152,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>BC 카드 페이지</title>
-
+s
 </head>
 
 <body>

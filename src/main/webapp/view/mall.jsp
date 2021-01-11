@@ -46,7 +46,7 @@
         $(document).ready(function() {
             $("#test").bind("click", function() {
                 var form = $("#dpaForm");
-                    form.attr("action", "https://isrnd.bccard.com:56443/src/payments/init/");
+                    form.attr("action", "https://isrnd.bccard.com:56443/src/payments/init2/");
                     form.attr("method", "post");
                     form.submit();
             })
