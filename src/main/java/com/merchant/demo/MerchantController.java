@@ -67,6 +67,8 @@ public class MerchantController {
 	    @GetMapping(value = "/vn/welcome3", produces = MediaType.TEXT_HTML_VALUE)
 	    @ResponseBody
 	    public String welcomeAsHTML3() throws IOException {
+	    	
+	    	//TODO:: URL 정책  
 	    	Document doc = null;
 	    	ClassPathResource resource = new ClassPathResource("static/vn/index.html");
 	    	System.out.println("resource" + resource.toString());
@@ -77,11 +79,11 @@ public class MerchantController {
 	    	    System.out.println("contents " + s);
 			    doc = Jsoup.parse(s);
 			    
-			    Element link = new Element(Tag.valueOf("a"), "")
-			    		  .text("Checkout this amazing website!")
-			    		  .attr("href", "http://baeldung.com")
-			    		  .attr("target", "_blank");
-			    doc.appendChild(link);
+			    Element link = new Element(Tag.valueOf("script"), "")
+			    		  .text("window.__VP__ = { srcClientId: \"43a83638-0122-4a9f-baaa-a4b9eb3caa51\",srcDpaId: \"c21195dc-39eb-422c-8328-db2b0b535ed3\"}");
+//			    		  .attr("href", "http://baeldung.com")
+//			    		  .attr("target", "_blank");
+			    doc.body().appendChild(link);
 	    	} catch (IOException e) {
 	    		e.printStackTrace();
 	    	}
