@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns2:executeResponse xmlns:ns2="http://function.ws.core.gateway.com/">
+            <return>
+                <ResponseData>ee1EaPFstGYoLbIwqowuaXlnCeLvYf8K5IIUAm/Xp6mHS+mMv1ImVgPCVMC9PrLp9PnI+bDUDQuyn86/L6lo94vzXliZCCnNvUePvMUrW+JdQXSvA4o8Jr1Hj7zFK1vi6tMMx0Qe8Ywg9MFSr4XNXQZtOAK4Ae3CVUGe3dyBG6YzfIlxyCKPg5da4NvmZHybzEco9LIfJbPfyciRN77i1/i9MHR584i9K6PlHWpOlbRL0gp6dnJ9jjaAXJLVVwM1xFODPGYdDdPZR2TO7pvZecvylJrlBjD3cKPRapISeF2Y+vFMDO0hhLvGD8u52QHnvUePvMUrW+KyhtaVakh4XLNYLr/sFe1oN6cLtyRq4dsiOQfzuwzrriBYh364iHp5pCtHPLIe2Cv8WXh39y9ibrqQV345Z0XRsYWOGGhh/OyRgPy7tBLGfAxXcHyvAWsT9LGrHbHmYHq26lNGVt/rtDx41TnB6hrWz6Zan1V02c3asyyrTzpLMHaE0EgDCA7nGkm1Fb6ixQbKoN6OuorSl+6eV9feC/ZQd6nhdrUVDd86vUL/gqnWBIlXH/XcXAFJ+ck4LrXxQPZ++XiUj9DuL5dmin6NiCicMZxKunOSIZuxL+ptqUKhLzTTv0XW3DLUui2L1aCfR1Q=</ResponseData>
+                <ResponseKey>ynduOZph2rP64YsuiNPsU+Dudl0ZuuH34Wm/3D7AKr0bAbzatdJTDuttwztm/LbK3ieku64lTNB8eggFemask0ZEMmFOTna1vD82XWRFfPRPT40Nq7JQbpEHmSuvp+8I45AzMiSTf6EHmt+Qz5/EKS9eLqw9sotCDYegwjkuc0kuhaEzM07LZ1FFJGDyXHZ2sHG6XBO3qDwgDGQEdNW51qPh0hTKGCxNyH8+6qOWxKHcyt30Od/n+0ksAEt94/u0TcK7aoNYdS+NVmy9sBjQfXxXIUCU1D4r6splaquPDWYQTggHJzW4kcBghZ3QA6t38rLm9dS6qJO0F31FETV8Sg==</ResponseKey>
+            </return>
+        </ns2:executeResponse>
+    </soap:Body>
+</soap:envelope>
