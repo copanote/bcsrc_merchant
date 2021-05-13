@@ -7,7 +7,8 @@ import com.merchant.demo.xml.lpb.api.otpConfirm.vo.OtpConfirmResponseVo;
 import lombok.Data;
 
 @Data
-public class OtpConfirmResponse {
+public class OtpConfirmResponse  {
+	
 	@JsonProperty("ResponseHeader")
 	private ResponseHeader responseHeader;
 	@JsonProperty("BccardOnlineRequestBody")

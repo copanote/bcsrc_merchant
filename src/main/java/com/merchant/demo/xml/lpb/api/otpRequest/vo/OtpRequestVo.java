@@ -1,12 +1,12 @@
 package com.merchant.demo.xml.lpb.api.otpRequest.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.merchant.demo.xml.lpb.api.comm.LpbField;
+import com.merchant.demo.xml.lpb.api.comm.LpbMsg;
 
 import lombok.Data;
 
 @Data
-public class OtpRequestVo {
+public class OtpRequestVo implements LpbMsg {
 	@JsonProperty("MobileNo") 
 	@LpbField(signature = true) 
 	private String mobileNo;

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class RequestHeader {
+public class RequestHeader implements LpbMsg {
 	@JsonProperty("Command") 
 	@LpbField(signature = true) 
 	private String command;

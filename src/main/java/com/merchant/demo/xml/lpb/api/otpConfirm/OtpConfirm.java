@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @JacksonXmlRootElement(localName = "BccardOnlineRequest")
-public class OtpConfirm {
+public class OtpConfirm  {
 	@JsonProperty("RequestHeader")
 	private RequestHeader requestHeader;
 	@JsonProperty("BccardOnlineRequestBody")
