@@ -6,15 +6,24 @@ import lombok.Data;
 
 @Data
 public class RequestHeader {
-	@JsonProperty("Command")
+	@JsonProperty("Command") 
+	@LpbField(signature = true) 
 	private String command;
-	@JsonProperty("Password")
+	
+	@JsonProperty("Password") 
+	@LpbField(signature = true) 
 	private String password;
-	@JsonProperty("SystemTraceId")
+	
+	@JsonProperty("SystemTraceId") 
+	@LpbField(signature = true)
 	private String systemTraceId;
-	@JsonProperty("RequestDateTime")
+	
+	@JsonProperty("RequestDateTime") 
+	@LpbField(signature = true)
 	private String requestDateTime;
+	
 	@JsonProperty("ChannelType")
+	@LpbField(signature = true)
 	private String channelType;
 	
 }

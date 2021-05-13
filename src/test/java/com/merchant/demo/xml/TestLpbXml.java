@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.merchant.demo.xml.lpb.api.otpRequest.OnlineRequestResponse;
+import com.merchant.demo.xml.lpb.api.otpRequest.OtpRequestResponse;
 import com.merchant.demo.xml.lpb.soap.req.RequestBody;
 import com.merchant.demo.xml.lpb.soap.req.RequestEnvelope;
 import com.merchant.demo.xml.lpb.soap.res.ResponseEnvelope;
@@ -69,7 +69,7 @@ class TestLpbXml {
 	    File file = new File("testRes.xml");
 	    XmlMapper xmlMapper = new XmlMapper();
 	    String xml = inputStreamToString(new FileInputStream(file));
-	    OnlineRequestResponse value = xmlMapper.readValue(xml, OnlineRequestResponse.class);
+	    OtpRequestResponse value = xmlMapper.readValue(xml, OtpRequestResponse.class);
 	    System.out.println(value.toString());
 	}
 	
