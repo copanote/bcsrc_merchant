@@ -69,12 +69,21 @@ class CipherTest {
 		
 		String resKey ="ynduOZph2rP64YsuiNPsU+Dudl0ZuuH34Wm/3D7AKr0bAbzatdJTDuttwztm/LbK3ieku64lTNB8eggFemask0ZEMmFOTna1vD82XWRFfPRPT40Nq7JQbpEHmSuvp+8I45AzMiSTf6EHmt+Qz5/EKS9eLqw9sotCDYegwjkuc0kuhaEzM07LZ1FFJGDyXHZ2sHG6XBO3qDwgDGQEdNW51qPh0hTKGCxNyH8+6qOWxKHcyt30Od/n+0ksAEt94/u0TcK7aoNYdS+NVmy9sBjQfXxXIUCU1D4r6splaquPDWYQTggHJzW4kcBghZ3QA6t38rLm9dS6qJO0F31FETV8Sg==";
 
+	
+		String hello = "wuBvwVhU9EisY/ynT4342TXbsKUe8xhmI5zj+59wM2JoMeD9yihWZgDL0tl7zagSrGo8TNlyxULByodTFVpsbSgr7Szu6OMflcDibTcIeeZIardb/ezo53WiQCZPJ93DbMeEFOIKBGalA5Di03aupiY7rEkS3hgfUhaqzArg54PcLST2ZSxejaxrLR8PrwgQAHyw3kaVw3f+oNwy+06zx7qjw7rKELiWZpd1YHaCUE+V0cDqBkReVtzzVhfblrRoKnwsABJ4X4wktAU9+XMe49WqxpIi2LitSbN9Lp1mFqDSfgRAl6va8FCX+S2aMyyVJRv1npgy+5vtDy8yToILXw==";
+		
+		String hell2 = "T221EXs0OZsCpWDXynzUymz6iMmuqUBj6AOns72JwoTX9oGUXJNCSQg8HbYKObGjVj05Sn9ORqQBSDWdfmitOSC3B1dqTnvL5ZGGrg0D0ft9EJsKPRgkneM4zpcjdPWvKRhkLO6p59jxtIcnqzTIgDIEf4u6o+PbwnDGD0YawcedNpPJ1ZkFLXSVhhM16jipRuch+t4X7EYUYzbcq0K22MbGKjzqzcZ/hzMBXcM+5P8wqxi//29rw+yzvXx56gaOSlEiLncn/2N6sA1uagIjlVv3XVkLytoZ+fGpCtVDQ+jlwQ2XP3i+H/AFHEIR9pJ/WFU3mTJb2yLoSv52g7aJtQ==";
+		
+		String hello4 = "fvx8Hsg/XJS+MUxg3/E/H2qGvb1VSZzSHzzwc/WCanurdH+6Kq5R6K/Thvbx6II7BcTKA2VLTR5p/vZDCh5Zo8SsVgzu94FFlPC4PK1PvLLeK98uAWeV2I40ZxXqCF9LKrKfO1o48R1EtTjB+X7avCO7oV5lzZ10QWnQjQkpJP6FMex5d5JUDWcwKb8r48Aq8f2q+0MiDrVemV6eoOrprD6jjC3ZDqdREaYgsDv3nBuR2iQI59MR6GKe16585J2ium2yokm5wrght8AGjSZSlXb4imd6z7+pkJldZvzRc07Z92s3Cvz1XKl85f+39L4cjnXGde+pMjvPQujQ2EE/UQ==";
 		
 		KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(bcPrivateKey));
 		Key priKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
 		
-		byte[] d= Ciphers.rsaDecrypt( Base64.getDecoder().decode(bcPrivateKey), Base64.getDecoder().decode(resKey));
-		System.out.println(new String(d));
+		byte[] d= Ciphers.rsaDecrypt( Base64.getDecoder().decode(bcPrivateKey), Base64.getDecoder().decode(hello4));
+		System.out.println("Hell2:  " + new String(d));
+		
+		String vvv = "SGVsbG8gV29ybGQ=";
+		System.out.println("vvv:" + new String(Base64.getDecoder().decode(vvv)));
 		
 		assertNotNull(d);
 		
@@ -111,6 +120,12 @@ class CipherTest {
 		
 		KeySpec keySpec2 = new X509EncodedKeySpec(Base64.getDecoder().decode(bcPublicKey));
 		Key publicKey2 = KeyFactory.getInstance("RSA").generatePublic(keySpec2);
+		
+		System.out.println("HelloWorld: " + 
+		new String(Base64.getEncoder().encode(Ciphers.rsaEncrypt(Base64.getDecoder().decode(bcPublicKey), "Hello World".getBytes()))));
+		
+		
+		
 		System.out.println(publicKey2);
 		
 		KeySpec keySpec3 = new X509EncodedKeySpec(Base64.getDecoder().decode(lpbProdPublicKey));

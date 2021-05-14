@@ -66,9 +66,7 @@ public interface LpbMsg {
 	
 	public static  <T extends LpbMsg> String makeFullSignatureData(T header, T body) {
 		String dataHeader = makeSignature(header);
-		System.out.println(dataHeader);
 		String dataBody = makeSignature(body);
-		System.out.println(dataBody);
 		if ( dataBody == null || dataBody.isEmpty()) {
 			return dataHeader;
 		} else {

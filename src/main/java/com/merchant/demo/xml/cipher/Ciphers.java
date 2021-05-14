@@ -69,8 +69,9 @@ public class Ciphers {
 		Key publicKey = KeyFactory.getInstance("RSA").generatePublic(keySpec);
 
 		byte[] cipherText = null;
-		Cipher cipher = Cipher.getInstance("RSA");
+		Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+		System.out.println(cipher.getAlgorithm());
 		cipherText = cipher.doFinal(plainText);
 		return cipherText;
 	}
@@ -80,7 +81,7 @@ public class Ciphers {
 		KeySpec keySpec = new PKCS8EncodedKeySpec(priKey);
 		Key privateKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
 		byte[] plainText = null;
-		Cipher cipher = Cipher.getInstance("RSA");
+		Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		cipher.init(Cipher.DECRYPT_MODE, privateKey);
 		plainText = cipher.doFinal(cipherText);
 		return plainText;
@@ -92,40 +93,34 @@ public class Ciphers {
 		KeyGenerator keygen = KeyGenerator.getInstance("DESede");
 
 		// Using it to generate a key
-
 		SecretKey secretKey = keygen.generateKey();
 		SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("DESede");
 		DESedeKeySpec keyspec = (DESedeKeySpec) keyfactory.getKeySpec(secretKey, DESedeKeySpec.class);
 		return keyspec.getKey();
 	}
 
-	public static byte[] decryptTDes(byte[] key, byte[] cipherText) {
-
-		byte[] plainText = null;
-
-		try {
-			Cipher cipher = Cipher.getInstance("DESede");
-			SecretKeySpec keyspec = new SecretKeySpec(key, "DESede");
-			cipher.init(Cipher.DECRYPT_MODE, keyspec);
-			plainText = cipher.doFinal(cipherText);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public static byte[] decryptTDes(byte[] key, byte[] cipherText) throws Exception {
+		SecretKeySpec keyspec = new SecretKeySpec(key, "DESede");
+		
+		Cipher cipher = Cipher.getInstance("DESede");
+		cipher.init(Cipher.DECRYPT_MODE, keyspec);
+		byte[] plainText = cipher.doFinal(cipherText);
+		
 		return plainText;
 	}
 
-	public static byte[] encryptTDes(byte[] key, byte[] plainText) throws Exception  {
+	public static byte[] encryptTDes(byte[] key, byte[] plainText) throws Exception {
 
 		byte[] cipherText = null;
-			Cipher cipher = Cipher.getInstance("DESede");
-			SecretKeySpec keyspec = new SecretKeySpec(key, "DESede");
-			cipher.init(Cipher.ENCRYPT_MODE, keyspec);
-			plainText = cipher.doFinal(plainText);
+		Cipher cipher = Cipher.getInstance("DESede");
+		SecretKeySpec keyspec = new SecretKeySpec(key, "DESede");
+		cipher.init(Cipher.ENCRYPT_MODE, keyspec);
+		plainText = cipher.doFinal(plainText);
 		return plainText;
 	}
 
-	public static boolean verifyRsaSignature(String data, String signature, String key) throws Exception {
-		KeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(key));
+	public static boolean verifyRsaSignature(String data, String signature, String priKey) throws Exception {
+		KeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(priKey));
 		PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(keySpec);
 		Signature instance = Signature.getInstance("SHA256withRSA");
 		instance.initVerify(publicKey);
@@ -134,9 +129,8 @@ public class Ciphers {
 		return instance.verify(Base64.getDecoder().decode(signature));
 	}
 
-	public static String sha256WithRsaSign(String data, String key) throws Exception {
-
-		KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(key));
+	public static String sha256WithRsaSign(String data, String pubKey) throws Exception {
+		KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(pubKey));
 		PrivateKey priKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
 
 		Signature instance = Signature.getInstance("SHA256withRSA");
