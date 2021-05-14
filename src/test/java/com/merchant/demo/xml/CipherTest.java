@@ -73,7 +73,7 @@ class CipherTest {
 		KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(bcPrivateKey));
 		Key priKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
 		
-		byte[] d= Ciphers.rsaDecrypt("rsa", priKey, Base64.getDecoder().decode(resKey));
+		byte[] d= Ciphers.rsaDecrypt( Base64.getDecoder().decode(bcPrivateKey), Base64.getDecoder().decode(resKey));
 		System.out.println(new String(d));
 		
 		assertNotNull(d);
@@ -87,7 +87,7 @@ class CipherTest {
 		KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(bcPrivateKey));
 		Key priKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
 		
-		byte[] d= Ciphers.rsaDecrypt("rsa", priKey, Base64.getDecoder().decode(resKey));
+		byte[] d= Ciphers.rsaDecrypt( Base64.getDecoder().decode(bcPrivateKey), Base64.getDecoder().decode(resKey));
 		
 		return d;
 	}

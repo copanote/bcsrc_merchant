@@ -25,6 +25,10 @@ public interface LpbMsg {
 	 */
 	public static <T extends LpbMsg> String makeSignature(T instance) {
 		
+		if (instance == null) {
+			return "";
+		}
+		
 		StringBuilder sb = new StringBuilder();
 		
 		Field[] fields = instance.getClass().getDeclaredFields();

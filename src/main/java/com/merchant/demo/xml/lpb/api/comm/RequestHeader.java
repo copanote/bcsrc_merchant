@@ -10,15 +10,15 @@ public class RequestHeader implements LpbMsg {
 	@LpbField(signature = true) 
 	private String command;
 	
-	@JsonProperty("Password") 
-	@LpbField(signature = true) 
+	@JsonProperty("Password")
+	@LpbField(signature = true)
 	private String password;
 	
-	@JsonProperty("SystemTraceId") 
+	@JsonProperty("SystemTraceId")
 	@LpbField(signature = true)
 	private String systemTraceId;
 	
-	@JsonProperty("RequestDateTime") 
+	@JsonProperty("RequestDateTime")
 	@LpbField(signature = true)
 	private String requestDateTime;
 	

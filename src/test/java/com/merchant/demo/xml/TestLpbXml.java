@@ -20,26 +20,6 @@ import com.merchant.demo.xml.lpb.soap.res.ResponseEnvelope;
 
 class TestLpbXml {
 	
-	@Test
-	public void test() throws JsonProcessingException {
-		
-		System.out.println("test");
-		
-		RequestEnvelope en = new RequestEnvelope();
-		RequestBody body = new RequestBody();
-		com.merchant.demo.xml.lpb.soap.req.Execute exe = new com.merchant.demo.xml.lpb.soap.req.Execute();
-		exe.setUser("Bccard");
-		exe.setRequestKey("testKet");
-		exe.setRequestData("testData");
-		body.setExecute(exe);
-		en.setBody(body);
-		
-
-		XmlMapper xmlMapper = new XmlMapper();
-		String xml = xmlMapper.writeValueAsString(en);
-		System.out.println(xml);
-		assertNotNull(xml);
-	}
 	
 	@Test
 	public void test2() throws JsonProcessingException {
