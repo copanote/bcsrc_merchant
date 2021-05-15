@@ -21,7 +21,7 @@ import com.merchant.demo.xml.lpb.soap.res.ResponseEnvelope;
 class TestLpbXml {
 	
 	
-	@Test
+//	@Test
 	public void test2() throws JsonProcessingException {
 		System.out.println("test");
 	}
@@ -36,15 +36,24 @@ class TestLpbXml {
 //	}
 	
 	@Test
-	public void whenJavaGotFromXmlFile_thenCorrect() throws IOException {
+	public void whenJavaGotFromXmlFile_thenCorrect() throws Exception {
 	    File file = new File("response.xml");
 	    XmlMapper xmlMapper = new XmlMapper();
 	    String xml = inputStreamToString(new FileInputStream(file));
-	    ResponseEnvelope value = xmlMapper.readValue(xml, ResponseEnvelope.class);
-	    System.out.println(value.toString());
+	    ResponseEnvelope value = ResponseEnvelope.unmarshal(xml);
+	    
+	    OtpRequestResponse otpRes = OtpRequestResponse.openEnvelope(value);
+	    System.out.println("veryfySignature res:" + otpRes.veryfySignature());
+	    
+	    System.out.println("Header:" + otpRes.getResponseHeader());
+	    System.out.println("Body:" +  otpRes.getBccardOnlineRequestBody());
+	    
+	    
+	    
+	    
 	}
 	
-	@Test
+//	@Test
 	public void whenJavaGotFromXmlFile_thenCorrect2() throws IOException {
 	    File file = new File("testRes.xml");
 	    XmlMapper xmlMapper = new XmlMapper();

@@ -1,5 +1,7 @@
 package com.merchant.demo.xml.lpb.soap.req;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
@@ -15,6 +17,12 @@ public class RequestEnvelope {
 
 	@JacksonXmlProperty(namespace = "http://schemas.xmlsoap.org/soap/envelope/", localName = "soap:Body")
 	private RequestBody body;
+	
+	
+	public String toXml() throws JsonProcessingException {
+		XmlMapper xmlMapper = new XmlMapper();
+		return xmlMapper.writeValueAsString(this);
+	}
 	
 	public static RequestEnvelope of(String user, String data) throws Exception {
 		RequestBody body = RequestBody.of(user, data);

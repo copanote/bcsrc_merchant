@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.merchant.demo.xml.cipher.Ciphers;
 import com.merchant.demo.xml.lpb.api.comm.LpbMsg;
-import com.merchant.demo.xml.lpb.api.comm.RequestHeader;
+import com.merchant.demo.xml.lpb.api.comm.header.RequestHeader;
 import com.merchant.demo.xml.lpb.api.otpRequest.vo.OtpRequestVo;
 import com.merchant.demo.xml.lpb.soap.req.RequestEnvelope;
 
@@ -23,7 +23,7 @@ public class OtpRequest {
 	private String signature;
 	
 	public String createSignature() throws Exception {
-		String data = LpbMsg.makeFullSignatureData(requestHeader, otpRequestVo);
+		String data = LpbMsg.makeSignedData(requestHeader, otpRequestVo);
 		return Ciphers.sha256WithRsaSign(data, Ciphers.bcPrivateKey);
 	}
 	
@@ -32,7 +32,7 @@ public class OtpRequest {
 		return xmlMapper.writeValueAsString(this);
 	}
 	
-	public RequestEnvelope envelope() throws Exception {
+	public RequestEnvelope sealEnvelope() throws Exception {
 		return RequestEnvelope.of("Bccard", toXml());
 	}
 }

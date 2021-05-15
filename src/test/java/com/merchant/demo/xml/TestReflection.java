@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.merchant.demo.xml.lpb.api.comm.LpbMsg;
-import com.merchant.demo.xml.lpb.api.comm.RequestHeader;
+import com.merchant.demo.xml.lpb.api.comm.header.RequestHeader;
 import com.merchant.demo.xml.lpb.api.otpConfirm.vo.OtpConfirmResponseVo;
 import com.merchant.demo.xml.lpb.api.otpRequest.OtpRequest;
 import com.merchant.demo.xml.lpb.api.otpRequest.OtpRequestResponse;
@@ -31,7 +31,7 @@ class TestReflection {
 		v.setRsltMsg("resMsg");
 		v.setWalletId("Wallet");
 		
-		System.out.println(LpbMsg.makeSignature(v));
+		System.out.println(LpbMsg.makeSignedData(v));
 
 	}
 	

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.merchant.demo.xml.cipher.Ciphers;
 import com.merchant.demo.xml.lpb.api.comm.LpbMsg;
-import com.merchant.demo.xml.lpb.api.comm.RequestHeader;
+import com.merchant.demo.xml.lpb.api.comm.header.RequestHeader;
 import com.merchant.demo.xml.lpb.api.otpConfirm.vo.OtpConfirmVo;
 import com.merchant.demo.xml.lpb.soap.req.RequestEnvelope;
 
@@ -23,7 +23,7 @@ public class OtpConfirm  {
 	private String signature;
 	
 	public String createSignature() throws Exception {
-		String data = LpbMsg.makeFullSignatureData(requestHeader, otpConfirm);
+		String data = LpbMsg.makeSignedData(requestHeader, otpConfirm);
 		return Ciphers.sha256WithRsaSign(data, Ciphers.bcPrivateKey);
 	}
 	

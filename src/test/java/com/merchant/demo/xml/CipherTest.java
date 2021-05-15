@@ -68,7 +68,6 @@ class CipherTest {
 	void decResKey() throws Exception {
 		
 		String resKey ="ynduOZph2rP64YsuiNPsU+Dudl0ZuuH34Wm/3D7AKr0bAbzatdJTDuttwztm/LbK3ieku64lTNB8eggFemask0ZEMmFOTna1vD82XWRFfPRPT40Nq7JQbpEHmSuvp+8I45AzMiSTf6EHmt+Qz5/EKS9eLqw9sotCDYegwjkuc0kuhaEzM07LZ1FFJGDyXHZ2sHG6XBO3qDwgDGQEdNW51qPh0hTKGCxNyH8+6qOWxKHcyt30Od/n+0ksAEt94/u0TcK7aoNYdS+NVmy9sBjQfXxXIUCU1D4r6splaquPDWYQTggHJzW4kcBghZ3QA6t38rLm9dS6qJO0F31FETV8Sg==";
-
 	
 		String hello = "wuBvwVhU9EisY/ynT4342TXbsKUe8xhmI5zj+59wM2JoMeD9yihWZgDL0tl7zagSrGo8TNlyxULByodTFVpsbSgr7Szu6OMflcDibTcIeeZIardb/ezo53WiQCZPJ93DbMeEFOIKBGalA5Di03aupiY7rEkS3hgfUhaqzArg54PcLST2ZSxejaxrLR8PrwgQAHyw3kaVw3f+oNwy+06zx7qjw7rKELiWZpd1YHaCUE+V0cDqBkReVtzzVhfblrRoKnwsABJ4X4wktAU9+XMe49WqxpIi2LitSbN9Lp1mFqDSfgRAl6va8FCX+S2aMyyVJRv1npgy+5vtDy8yToILXw==";
 		

@@ -1,6 +1,8 @@
-package com.merchant.demo.xml.lpb.api.comm;
+package com.merchant.demo.xml.lpb.api.comm.header;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.merchant.demo.xml.lpb.api.comm.LpbMsg;
+import com.merchant.demo.xml.lpb.api.comm.LpbMsg.LpbField;
 
 import lombok.Data;
 
