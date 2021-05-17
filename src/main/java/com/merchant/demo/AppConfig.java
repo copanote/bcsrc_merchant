@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,12 @@ public class AppConfig {
 		Path p = Paths.get(resource.getURI());
 		byte[] b = Files.readAllBytes(p);
 		return new String(b, Charset.forName("utf-8"));
+	}
+	
+	
+	@Bean("fm_yyyyMMddHHmmss")
+	public DateTimeFormatter formatter() {
+		return DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.merchant.demo.xml.lpb.api.otpRequest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.merchant.demo.xml.cipher.Ciphers;
 import com.merchant.demo.xml.lpb.api.comm.XmlUtils;
@@ -25,6 +27,11 @@ public class OtpRequestResponse {
 	public boolean veryfySignature() throws Exception {
 		String sigData = LpbMsg.makeSignedData(responseHeader, bccardOnlineRequestBody);
 		return Ciphers.verifyRsaSignature(sigData, signature, Ciphers.lpbDevPublicKey);
+	}
+	
+	public String toXml() throws JsonProcessingException {
+		XmlMapper xmlMapper = new XmlMapper();
+		return xmlMapper.writeValueAsString(this);
 	}
 	
 	public static OtpRequestResponse openEnvelope(ResponseEnvelope r) throws Exception {
