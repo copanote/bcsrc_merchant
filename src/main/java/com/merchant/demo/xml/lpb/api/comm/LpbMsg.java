@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,7 +29,7 @@ public interface LpbMsg {
 	 * @return StringData which to be signed. 
 	 * @Desc
 	 *   Signature making rules
-	 *    1. Check LpbField annotation is present or not. And marked signature is true.
+	 *    1. Check LpbField annotation is present or not. And marked at true.
 	 *    2. Sorted by alphabetical order of the T's field name
 	 *    3. Joined value of T's sorted field. and separated by "|"
 	 */
@@ -57,7 +58,6 @@ public interface LpbMsg {
 			return ret;
 		})
 		.filter( s -> !s.isEmpty() )
-		
 		.collect(Collectors.toList())
 		.forEach((s) -> {
 			sb.append(s);
@@ -70,7 +70,6 @@ public interface LpbMsg {
 		}
 		return sb.toString();
 	}
-	
 	
 	/**
 	 * 

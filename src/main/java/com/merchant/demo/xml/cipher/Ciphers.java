@@ -46,14 +46,16 @@ public class Ciphers {
 			+ "7MhqCOVfOTXcj/0MbvZSyHD1ksL6o8lOcost2W23VssCLQILwbD+dNXWRSBASXbZ"
 			+ "dmKZq0ew8tf4Dn48ROjoxKSTGJ1Y+Hy78Th2WTCBAoGALnAeKoEK+8aHlkRV9Ngf"
 			+ "cwEKFm/sz0fYu99woSKul3v3hvIA+qJJRXhUlKE/4xDrzCBY/fcSvinYI5B4KGhl"
-			+ "6MnzRjL8ArqzQxpBx2+lR4Fm4XkVrl7ArBYI5c5hXGfGdXrrxrGKssWWmNSLGlQe" + "RZdE0piYgBTJM52t1qOuzEE=";
+			+ "6MnzRjL8ArqzQxpBx2+lR4Fm4XkVrl7ArBYI5c5hXGfGdXrrxrGKssWWmNSLGlQe" 
+			+ "RZdE0piYgBTJM52t1qOuzEE=";
 
 	public static String bcPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1SuabCoYVKqkAKrl/j24"
 			+ "13Zp4udCXVkej3YidN3JYt/tf4gbeWn/LJgCNR5tFpeKGE0ARZpaD6XCIHDWhQxe"
 			+ "naV15ymVJS6E5Ub3QGZw2qe9KEfKEPBjo+XR86RZqIctevXggMTmNPJSYTPvti+X"
 			+ "ZdNMi58RFpERpYbJRGFiocMSTVS3nE5hkJ06j+TpDM8w5R+avrya77g0jR9h7DqB"
 			+ "t83o+pvsjXI5r0hrCd8h58/sQlcgA3C3PftPfdysLeIbTxcqDsfxwZbIs4F3ZqOk"
-			+ "OK7JLaLKphndVbVmRbtJT8xxk5237p9VrpohhM7hyQXXrVtsgLzsGH3zBsiYSwzC" + "mQIDAQAB";
+			+ "OK7JLaLKphndVbVmRbtJT8xxk5237p9VrpohhM7hyQXXrVtsgLzsGH3zBsiYSwzC" 
+			+ "mQIDAQAB";
 
 	public static String lpbDevPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/8s+3EELKBFwUZYrl2fRrzaOL0fKILirtHkJloUjq8AdOqywOhCa5op9g652NVbF73/aDVabHj4o43qODpMmyoQpcURtKJJOYHboWVb5qw+tK10V/FNdlPjxArlniOD2Gn+m4eV3AUykd8uujnznVImi/5U+v6w7/QTW+pJBhPQIDAQAB";
 
@@ -62,7 +64,8 @@ public class Ciphers {
 			+ "VRQeilDyKVRrxMF4/qW5bFSe+LJpGTqeqT2dPvtQE840OuZUkcewexui/S4KVy1+"
 			+ "K3maG98J9nl2R7qnob9EK5AzQ3tfHp4m3leuWZ6LwADzSFOy5Ot2fZ9dIOLZAais"
 			+ "BXNEiHa83uhO0FW/b9gMgtTlogE4EH4mgjdGWtCtsTkrWO0uUCRgFiW7lXQUYvcA"
-			+ "FRqSPOdvw/n8xcDQKCVlqLqxQUQ38Ro46E8Dx1OiSyf48eK1ursGQ8HQo61pgQ6n" + "bwIDAQAB";
+			+ "FRqSPOdvw/n8xcDQKCVlqLqxQUQ38Ro46E8Dx1OiSyf48eK1ursGQ8HQo61pgQ6n" 
+			+ "bwIDAQAB";
 
 	public static byte[] rsaEncrypt(byte[] pubKey, byte[] plainText) throws Exception {
 		KeySpec keySpec = new X509EncodedKeySpec(pubKey);

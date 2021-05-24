@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.merchant.demo.log.LogService;
+
 @Controller
 public class MerchantController {
 
@@ -110,6 +112,15 @@ public class MerchantController {
 
 		@RequestMapping("/home22")
 		public String home() {
+			return "forward:/static/test.html";
+		}
+		
+		@RequestMapping("/aop")
+		public String aop() {
+			
+			LogService service = new LogService();
+			
+			
 			return "forward:/static/test.html";
 		}
 
