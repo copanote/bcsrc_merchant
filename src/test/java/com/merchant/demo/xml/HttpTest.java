@@ -71,7 +71,6 @@ class HttpTest {
 		
 		System.out.println(otpRequestResponse.toXml());
 		
-		
 
 		
 		

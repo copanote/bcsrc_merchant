@@ -20,9 +20,9 @@ public class ResponseHeader implements LpbMsg {
 	@LpbField(signature = true) 
 	private String responseDateTime;
 	
-	@JsonProperty("TrnsId")
+	@JsonProperty("TransId")
 	@LpbField(signature = true) 
-	private String trnsId;
+	private String transId;
 	
 	@JsonProperty("ResponseCode")
 	@LpbField(signature = true) 

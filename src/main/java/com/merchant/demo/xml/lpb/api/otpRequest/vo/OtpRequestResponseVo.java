@@ -12,7 +12,7 @@ public class OtpRequestResponseVo implements LpbMsg {
 	private String rsltCode;
 	
 	@JsonProperty("RsltMsg")
-	@LpbField(signature = false) 
+	@LpbField(signature = true) 
 	private String rsltMsg;
 	
 	@JsonProperty("SessionId")

@@ -19,13 +19,14 @@ public class OtpRequestResponse {
 	
 	@JsonProperty("ResponseHeader")
 	private ResponseHeader responseHeader;
-	@JsonProperty("BccardOnlineRequestBody")
-	private OtpRequestResponseVo bccardOnlineRequestBody;
+	@JsonProperty("BccardOnlineResponseBody")
+	private OtpRequestResponseVo bccardOnlineResponseBody;
 	@JsonProperty("Signature")
 	private String signature;
 	
 	public boolean veryfySignature() throws Exception {
-		String sigData = LpbMsg.makeSignedData(responseHeader, bccardOnlineRequestBody);
+		String sigData = LpbMsg.makeSignedData(responseHeader, bccardOnlineResponseBody);
+		System.out.println("SigData: " + sigData);
 		return Ciphers.verifyRsaSignature(sigData, signature, Ciphers.lpbDevPublicKey);
 	}
 	

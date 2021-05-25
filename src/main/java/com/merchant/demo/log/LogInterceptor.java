@@ -28,7 +28,5 @@ public class LogInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 	}
-	
-	
 
 }
