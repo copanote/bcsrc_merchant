@@ -1,6 +1,8 @@
 package com.merchant.demo;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.merchant.demo.log.LogService;
+import com.merchant.demo.log.SrcLoggable;
+import com.merchant.demo.xml.lpb.api.comm.header.RequestHeader;
 
 @Controller
 public class MerchantController {
@@ -61,6 +66,7 @@ public class MerchantController {
 
 			return doc.toString();
 		}
+		
 
 		@GetMapping(value = "/vn/welcome3", produces = MediaType.TEXT_HTML_VALUE)
 		@ResponseBody
@@ -114,14 +120,14 @@ public class MerchantController {
 		public String home() {
 			return "forward:/static/test.html";
 		}
-		
+		@Autowired LogService ls;
+
 		@RequestMapping("/aop")
+		@SrcLoggable(name = "aop", owner = "CONT")
+		@ResponseBody
 		public String aop() {
-			
-			LogService service = new LogService();
-			
-			
-			return "forward:/static/test.html";
+			ls.helloWorld(RequestHeader.of("command", "pwd", UUID.randomUUID().toString(), LocalDateTime.now()));
+			return "aopController";
 		}
 
 	}

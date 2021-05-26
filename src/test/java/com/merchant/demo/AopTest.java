@@ -9,7 +9,6 @@ class AopTest {
 	@Test
 	void test() {
 		LogService s = new LogService();
-		s.service();
 		
 	}
 

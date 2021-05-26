@@ -46,7 +46,6 @@ class TestLpbXml {
 	    System.out.println("veryfySignature res:" + otpRes.veryfySignature());
 	    
 	    System.out.println("Header:" + otpRes.getResponseHeader());
-	    System.out.println("Body:" +  otpRes.getBccardOnlineRequestBody());
 	    
 	    
 	    

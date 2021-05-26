@@ -37,38 +37,38 @@ class TestReflection {
 	
 //	@Test
 	void testReq() throws Exception {
-		
-		RequestHeader header = new RequestHeader();
-		header.setChannelType("channelType");
-		header.setCommand("Command");
-		header.setPassword("bcc");
-		header.setRequestDateTime("202110101010");
-		header.setSystemTraceId("traceID");
-		
-		OtpRequestVo reqVo = new OtpRequestVo();
-		reqVo.setCurrencyCode("410");
-		reqVo.setMerchantName("BCCARD");
-		reqVo.setMobileNo("01089733575");
-		reqVo.setOtherInfo("others");
-		reqVo.setProductInfo("product");
-		reqVo.setPurchaseAmount("1000");
-		
-		OtpRequest req = new OtpRequest();
-		
-		req.setRequestHeader(header);
-		req.setOtpRequestVo(reqVo);
-		req.setSignature(req.createSignature());
-		
-		System.out.println(req.toString());
-		
-		XmlMapper xmlMapper = new XmlMapper();
-		String xml = xmlMapper.writeValueAsString(req);
-		System.out.println(xml);
-		
-		RequestEnvelope envelopoe = RequestEnvelope.of("bccard", xml);
-		
-		System.out.println(envelopoe);
-		System.out.println(xmlMapper.writeValueAsString(envelopoe));
+//		
+//		RequestHeader header = new RequestHeader();
+//		header.setChannelType("channelType");
+//		header.setCommand("Command");
+//		header.setPassword("bcc");
+//		header.setRequestDateTime("202110101010");
+//		header.setSystemTraceId("traceID");
+//		
+//		OtpRequestVo reqVo = new OtpRequestVo();
+//		reqVo.setCurrencyCode("410");
+//		reqVo.setMerchantName("BCCARD");
+//		reqVo.setMobileNo("01089733575");
+//		reqVo.setOtherInfo("others");
+//		reqVo.setProductInfo("product");
+//		reqVo.setPurchaseAmount("1000");
+//		
+//		OtpRequest req = new OtpRequest();
+//		
+//		req.setRequestHeader(header);
+//		req.setOtpRequestVo(reqVo);
+////		req.setSignature(req.createSignature());
+//		
+//		System.out.println(req.toString());
+//		
+//		XmlMapper xmlMapper = new XmlMapper();
+//		String xml = xmlMapper.writeValueAsString(req);
+//		System.out.println(xml);
+//		
+//		RequestEnvelope envelopoe = RequestEnvelope.of("bccard", xml);
+//		
+//		System.out.println(envelopoe);
+//		System.out.println(xmlMapper.writeValueAsString(envelopoe));
 
 	}
 	

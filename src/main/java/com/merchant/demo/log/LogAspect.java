@@ -1,39 +1,43 @@
 package com.merchant.demo.log;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.Stack;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Aspect
 @Component
 public class LogAspect {
 	
-	@Autowired
-	private HttpServletRequest req;
+	private static final String ATTRIBUTE_NAME = "srclog";
 	
-//	ServletRequestAttributes request = (ServletRequestAttributes) ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-	//
+	
 //	@Around("@annotation(Loggable)")
 	public void around(ProceedingJoinPoint pt) throws Throwable {
 		
+		String args = "";
+		
 		for (Object o : pt.getArgs()) {
 			System.out.println(JsonUtils.ObjectToJson(o));
-			System.out.println(o);
 		}
 		
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         
-        // @Loggable 애노테이션이 붙어있는 타겟 메소드를 실행
         pt.proceed();
         
         stopWatch.stop();
@@ -42,31 +46,74 @@ public class LogAspect {
 	}
 	
 	
-	@Before(value =  "@annotation(Loggable)")
+	@Before(value =  "@annotation(SrcLoggable)")
 	public void before(JoinPoint jp) {
-		req.setAttribute("srcloggable", true);
-		System.out.println("before in LogAspect|" + jp.toString());
+		HttpServletRequest requestt = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		Stack<DbLog> stack;
+		Optional<Object> o =  Optional.ofNullable(requestt.getAttribute(ATTRIBUTE_NAME));
+		DbLog log = new DbLog();
 
-		for (Object o : jp.getArgs()) {
-			System.out.println(JsonUtils.ObjectToJson(o));
-			System.out.println(o);
+		if (o.isPresent()) {
+			stack = (Stack<DbLog>) o.get();
+		} else {
+			//isNew
+			stack = new Stack<>();
+			log.setTransactionId(UUID.randomUUID().toString());
 		}
 		
 		
+		Method[] m = jp.getSignature().getDeclaringType().getDeclaredMethods();
+		Optional<SrcLoggable> mm =  Arrays.stream(m)
+				                     .filter(a -> a.getName().equalsIgnoreCase(jp.getSignature().getName()))
+				                     .map(a -> a.getAnnotation(SrcLoggable.class))
+				                     .findAny();
+		
+		SrcLoggable l = mm.get();
+		log.setApiOffererName(l.owner());
+		log.setCallApiName(l.name());
+		log.setInOutDivision(l.direction());
+
+		String logDataString = "";
+		for (Object obj : jp.getArgs()) {
+			logDataString += JsonUtils.ObjectToJson(obj);
+		}
+		log.setDbLogData(logDataString);
+		stack.push(log);
+		
+		requestt.setAttribute(ATTRIBUTE_NAME, stack);
+		System.out.println(log.toString());
+		
+		//TODO db save by threading
+		
+		
+		
 	}
-	@AfterReturning(value ="@annotation(Loggable)", returning = "result")
+	@AfterReturning(value ="@annotation(SrcLoggable)", returning = "result")
 	public void afterReturning(JoinPoint jp, Object result)  {
-		System.out.println(	 "srcloggable: " + 	 req.getAttribute("srcloggable"));
-		System.out.println(result.toString());
-		System.out.println(JsonUtils.ObjectToJson(result));
+		
+		HttpServletRequest requestt = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		System.out.println("httpRequest After:" + requestt.getSession());
+		Object obj = requestt.getAttribute(ATTRIBUTE_NAME);
+		if (obj == null) {
+			return;
+		}
+		
+		Stack<DbLog> s = (Stack<DbLog>) obj;
+		DbLog log = s.pop();
+		log.setInOutDivision(log.getInOutDivision().reverse());
+		log.setDbLogData(JsonUtils.ObjectToJson(result));
+		System.out.println(log.toString());
+
+		//TODO db save by threading
+		
 	}
-//	@AfterThrowing(value ="@annotation(Loggable)", throwing = "e")
+//	@AfterThrowing(value ="@annotation(SrcLoggable)", throwing = "e")
 	public void afterThrowing(JoinPoint jp, Throwable t) {
 	}
 	
-	@After("@annotation(Loggable)")
-	public void after(JoinPoint jp) {
-		System.out.println("after in LogAspect");
+	@AfterReturning(value ="@annotation(SrcAfterLoggable)", returning = "result")
+	public void afterExceptionHandler(JoinPoint jp, Object result) {
+		System.out.println("afterExceptionHandler");
 	}
-
+	
 }

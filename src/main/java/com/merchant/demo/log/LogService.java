@@ -10,7 +10,7 @@ import com.merchant.demo.xml.lpb.api.comm.header.RequestHeader;
 public class LogService {
 	
 	
-	@Loggable
+	@SrcLoggable(owner = "SRC", name = "service", direction = InOutDivision.OUTBOUND)
 	public RequestHeader service(int a, int b, String c) {
 		System.out.println("service");
 		
@@ -18,10 +18,9 @@ public class LogService {
 	}
 	
 	
-	@Loggable
+	@SrcLoggable(owner = "SRC", name = "hello", direction = InOutDivision.OUTBOUND)
 	public String helloWorld(RequestHeader header) {
 		System.out.println("helloWorld");
-		
 		return "result";
 	}
 

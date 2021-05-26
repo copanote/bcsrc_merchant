@@ -7,6 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME) @Target(ElementType.METHOD)
-public @interface Loggable {
-
+public @interface SrcLoggable {
+	public String owner() default "";
+	public String name() default "";
+	public InOutDivision direction() default InOutDivision.INBOUND;
 }
+
