@@ -1,7 +1,9 @@
 package com.merchant.demo.log;
 
 import java.lang.reflect.Method;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.Optional;
 import java.util.Stack;
 import java.util.UUID;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -24,7 +25,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class LogAspect {
 	
 	private static final String ATTRIBUTE_NAME = "srclog";
-	
 	
 //	@Around("@annotation(Loggable)")
 	public void around(ProceedingJoinPoint pt) throws Throwable {
@@ -49,15 +49,15 @@ public class LogAspect {
 	@Before(value =  "@annotation(SrcLoggable)")
 	public void before(JoinPoint jp) {
 		HttpServletRequest requestt = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		Stack<DbLog> stack;
+		Deque<DbLog> stack;
 		Optional<Object> o =  Optional.ofNullable(requestt.getAttribute(ATTRIBUTE_NAME));
 		DbLog log = new DbLog();
 
 		if (o.isPresent()) {
-			stack = (Stack<DbLog>) o.get();
+			stack = (Deque<DbLog>) o.get();
 		} else {
 			//isNew
-			stack = new Stack<>();
+			stack = new ArrayDeque<>();
 			log.setTransactionId(UUID.randomUUID().toString());
 		}
 		
@@ -94,11 +94,11 @@ public class LogAspect {
 		HttpServletRequest requestt = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		System.out.println("httpRequest After:" + requestt.getSession());
 		Object obj = requestt.getAttribute(ATTRIBUTE_NAME);
-		if (obj == null) {
-			return;
-		}
+		if (obj == null) return; //safe guard
 		
-		Stack<DbLog> s = (Stack<DbLog>) obj;
+		Deque<DbLog> s = (Deque<DbLog>) obj;
+		if (s.isEmpty()) return;  //safe guard
+		
 		DbLog log = s.pop();
 		log.setInOutDivision(log.getInOutDivision().reverse());
 		log.setDbLogData(JsonUtils.ObjectToJson(result));
