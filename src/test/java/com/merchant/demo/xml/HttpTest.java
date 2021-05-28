@@ -21,7 +21,7 @@ class HttpTest {
 	
 	
 
-	@Test
+//	@Test
 	void lpbTest() throws Exception {
 		CloseableHttpClient httpClient = ApacheHttpClientConfig.globalHttpClient();
 

@@ -42,7 +42,7 @@ public class MerchantController {
 
 	@RequestMapping("/home")
 	public String home() {
-		return "static/test.html";
+		return "mer.html";
 	}
 
 	@Controller
