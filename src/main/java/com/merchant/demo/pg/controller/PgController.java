@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,7 +46,8 @@ public class PgController {
 	}
 	
 	
-	@RequestMapping(value = "pg/mall", produces =  MediaType.TEXT_HTML_VALUE)
+	@GetMapping(value = "pg/mall", produces =  MediaType.TEXT_HTML_VALUE)
+	@ResponseBody
 	public String pgMall() {
 		Document doc = null;//	    	ClassPathResource resource = new ClassPathResource("static/vn/index.html");
 
