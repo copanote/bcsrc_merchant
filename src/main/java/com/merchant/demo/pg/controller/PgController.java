@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -62,5 +63,26 @@ public class PgController {
 		}
 		return doc.toString();
 	}
+	
+	
+	@GetMapping(value = "pg/test")
+	public String pgLocal() {
+		return "redirect:http://localhost:3000";
+	}
+	
+	@GetMapping(value = "pg/test2")
+	@ResponseBody
+	public SrcReturnVo pgLocal2() {
+		
+		SrcReturnVo vo = new SrcReturnVo();
+		vo.setResultCode("0000");
+		vo.setResultMessage("Suc");
+		vo.setSrcCorrelationId(UUID.randomUUID().toString());
+		vo.setSrciTransactionId(UUID.randomUUID().toString());
+		
+		return vo;
+	}
+	
+	
 	
 }
