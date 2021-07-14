@@ -83,6 +83,10 @@ public class PgController {
 		return vo;
 	}
 	
-	
+	@GetMapping(value = "pg/test3")
+	@ResponseBody
+	public SrcReturnVo pgLocal3(SrcReturnVo inVo) {
+		return inVo;
+	}
 	
 }
