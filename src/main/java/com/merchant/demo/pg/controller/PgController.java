@@ -32,7 +32,7 @@ public class PgController {
 	@Autowired SrcService srcService;
 	
 	//http://localhost:7070/src/pg/rd?resultCode=0000&resultMessage=Success&srcCorrelationId=1234&srciTransactionId=5678
-	@PostMapping(value = "pg/rd")
+	@RequestMapping(value = "pg/rd")
 	@ResponseBody
 	public String credential(SrcReturnVo inVo) {
 		log.debug(inVo.toString());
