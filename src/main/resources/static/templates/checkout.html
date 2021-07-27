@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" >
+        <title>CHECKOUT</title>
+    </head>
+    <body>
+
+        <div class="form-group">
+            <label for="resultCode">resultCode:</label>
+            <input type="text" id="resultCode" class="form-control" placeholder="" value="${resultCode}">
+
+            <label for="resultMessage">resultMessage:</label>
+            <input type="text" id="resultMessage" class="form-control" placeholder="" value="${resultMessage}">
+
+            <label for="srcCorrelationId">srcCorrelationId:</label>
+            <input type="text" id="srcCorrelationId" class="form-control" placeholder="" value="${srcCorrelationId}">
+
+            <label for="srciTransactionId">srciTransactionId:</label>
+            <input type="text" id="srciTransactionId" class="form-control" placeholder="" value="${srciTransactionId}">
+
+            <button class="btn btn-info" type="button"  id="open">Src Open</button>
+        </div>
+
+    </body>
+</html>

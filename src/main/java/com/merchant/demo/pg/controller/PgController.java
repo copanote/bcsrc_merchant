@@ -89,4 +89,13 @@ public class PgController {
 		return inVo;
 	}
 	
+	
+	@GetMapping(value = "pg/test4")
+	@ResponseBody
+	public String test() {
+		
+		
+		return "checkout";
+	}
+	
 }
