@@ -3,15 +3,19 @@ package com.merchant.demo.pg.service.api.http;
 import java.io.IOException;
 import java.util.UUID;
 
+import org.apache.http.Header;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.message.BasicHeaderElement;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ctc.wstx.io.SystemId;
 import com.merchant.demo.log.JsonUtils;
 import com.merchant.demo.pg.service.api.checkout.Checkout;
 import com.merchant.demo.pg.service.api.checkout.CheckoutResponse;
@@ -30,7 +34,7 @@ public class BcSrcHttpService {
 	public CheckoutResponse checkoutReal(Checkout c, String clientId, String clientSecret) {
 		HttpPost post = new HttpPost(BASE_URL + CHECKOUT);
 		post.addHeader("X-BcSrc-Client-Id", clientId);
-		post.addHeader("X-BcSrc-Client-Secet", clientSecret);
+		post.addHeader("X-BcSrc-Client-Secret", clientSecret);
 		String res = "";
 		try {
 			res = sendHttp(post, c.toJSON());
@@ -64,10 +68,18 @@ public class BcSrcHttpService {
 	}
 	
 	private String sendHttp(HttpPost post, String jsonMsg) throws ClientProtocolException, IOException {
+		post.addHeader("Content-Type", "application/json;utf-8");
+		post.addHeader("Accept", "application/json");
+		System.out.println("req: " + jsonMsg);
 		post.setEntity(new StringEntity(jsonMsg));
 		
 		try(CloseableHttpResponse res = httpClient.execute(post); ) {
-			return EntityUtils.toString(res.getEntity(), "utf-8");
+			String r = EntityUtils.toString(res.getEntity(), "utf-8");
+			System.out.println("res: " + r);
+			if (HttpStatus.SC_OK != res.getStatusLine().getStatusCode()) {
+				throw new IllegalStateException(r);
+			}
+			return r;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

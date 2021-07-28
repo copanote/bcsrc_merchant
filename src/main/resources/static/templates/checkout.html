@@ -3,23 +3,79 @@
     <head>
         <meta charset="UTF-8" >
         <title>CHECKOUT</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"  crossorigin="anonymous"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     window.addEventListener("load", function() {   
+         var srcCheckoutButton = window.document.getElementById('open');
+         srcCheckoutButton.addEventListener("click", function() {
+
+            var checkoutUrl = document.getElementById("CheckoutUrl");
+
+
+            var srcCorrelationId = document.getElementById("srcCorrelationId");
+            var srciTransactionId = document.getElementById("srciTransactionId");
+
+            var params = {
+                srcCorrelationId: srcCorrelationId.value,
+                srciTransactionId: srciTransactionId.value
+            }
+
+            console.log(JSON.stringify(params));
+            $.ajax({
+                type: 'POST',
+                url: '/src/pg/checkout',
+                 data: JSON.stringify (params),
+                 success: function(result){
+                     attachResult(result)
+                },
+                error: function(result){
+                    attachResult(result)
+                },
+                contentType: "application/json",
+            });
+        });
+                const attachResult = (data)=> { 
+                    $('#json').addClass('form-group').text(JSON.stringify (JSON.parse(data), undefined, 2));
+                } 
+
+    
+    });
+            
+
+    </script>
     </head>
+
+
     <body>
+
+
 
         <div class="form-group">
             <label for="resultCode">resultCode:</label>
-            <input type="text" id="resultCode" class="form-control" placeholder="" value="${resultCode}">
+            <input type="text" id="resultCode" class="form-control" placeholder="" th:value="${resultCode}">
 
             <label for="resultMessage">resultMessage:</label>
-            <input type="text" id="resultMessage" class="form-control" placeholder="" value="${resultMessage}">
+            <input type="text" id="resultMessage" class="form-control" placeholder="" th:value="${resultMessage}">
 
             <label for="srcCorrelationId">srcCorrelationId:</label>
-            <input type="text" id="srcCorrelationId" class="form-control" placeholder="" value="${srcCorrelationId}">
+            <input type="text" id="srcCorrelationId" class="form-control" placeholder="" th:value="${srcCorrelationId}">
 
             <label for="srciTransactionId">srciTransactionId:</label>
-            <input type="text" id="srciTransactionId" class="form-control" placeholder="" value="${srciTransactionId}">
+            <input type="text" id="srciTransactionId" class="form-control" placeholder="" th:value="${srciTransactionId}">
 
-            <button class="btn btn-info" type="button"  id="open">Src Open</button>
+            <button class="btn btn-info" type="button"  id="open">Src Checkout</button>
+        </div>
+
+        <div class="form-group">
+            <pre id="json"></pre>
+
         </div>
 
     </body>

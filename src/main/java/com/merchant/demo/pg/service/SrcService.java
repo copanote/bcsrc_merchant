@@ -15,14 +15,19 @@ public class SrcService {
 	public static final String CLIENT_ID = "c2090bfb-975a-4c81-9dd0-aa2903b9ecb0";
 	public static final String CLIENT_SECRET= "mZCNK/MdcXt+oRmJHR9kGAZKWXbrIByxYF1tD9s9lKs=";
 	
-	public String checkout(Checkout c) {
+	public CheckoutResponse checkout(Checkout c) {
 		 CheckoutResponse res =  srcHttpService.checkoutReal(c, CLIENT_ID, CLIENT_SECRET);
-		 return res.toString();
+		 return res;
 	}
 	
 	
 	public String checkoutMock(Checkout c) {
 		 CheckoutResponse res =  srcHttpService.checkoutMock(c, CLIENT_ID, CLIENT_SECRET);
 		 return res.toString();
+	}
+	
+	public CheckoutResponse checkoutMock2(Checkout c) {
+		 CheckoutResponse res =  srcHttpService.checkoutMock(c, CLIENT_ID, CLIENT_SECRET);
+		 return res;
 	}
 }
