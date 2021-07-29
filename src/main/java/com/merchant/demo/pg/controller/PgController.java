@@ -68,17 +68,6 @@ public class PgController {
 		return "redirect:http://localhost:3000";
 	}
 
-
-	@GetMapping(value = "pg/test4")
-	public String test(Model model) {
-		
-		model.addAttribute("resultCode", "0000");
-		model.addAttribute("resultMessage", "Success");
-		model.addAttribute("srcCorrelationId", "0000");
-		model.addAttribute("srciTransactionId", "0000");
-
-		return "checkout";
-	}
 	
 	@RequestMapping(value = "pg/checkoutMock")
 	@ResponseBody
